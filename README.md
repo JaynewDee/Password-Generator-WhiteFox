@@ -12,7 +12,7 @@
 
 
    ### **Link to Deployed Application:**   
-   
+   GitHub Pages link: [Password Generator](https://numinousblue.github.io/Password-Generator-WhiteFox/)
         
            
 
