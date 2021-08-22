@@ -2,37 +2,106 @@
 var generateBtn = document.querySelector("#generate");
 
 // Arrays for potential password characters
-var lowerCase = ["abcdefghijklmnopqrstuvwxyz"];
-var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-var numbers = ["123456789"];
-var specChars = ["!@#$%&*()"]
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbers = "123456789";
+var specChars = "!@#$%&*()";
 
+lowerCaseIndex = lowerCase.split('');
+upperCaseIndex = upperCase.split('');
+numbersIndex = numbers.split('');
+specCharsIndex = specChars.split('');
 
 
 function generatePassword(){
-  // WHEN prompted for the length of the password
+  
   var length = prompt("Enter password length");
-    // THEN I choose a length of at least 8 characters and no more than 128 characters
-  if (length > 8 && length < 128) {
+  if (!length){
+       return;
+  }
+  if (length >= 8 && length <= 128) {
        var lowerCaseOpt = confirm("Include lowercase letters?");
        var upperCaseOpt = confirm("Include uppercase letters?");
        var numbersOpt = confirm("Include numbers?");
        var specCharsOpt = confirm("Include special characters?");
-  }
-     else if (length < 8 && length > 128){
-            return alert("Invalid.  Please choose a password length greater than 8 characters and fewer than 128 characters.");
+  } else if (length < 8 || length > 128){
+          alert("Invalid.  Please choose a password length greater than 7 characters and fewer than 129 characters.");
+          generatePassword();
        };
 
-  console.log(parseInt(length))
-  console.log(typeof parseInt(length)) 
-  // WHEN asked for character types to include in the password
-  // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-  // WHEN I answer each prompt
-  // THEN my input should be validated and at least one character type should be selected
-  // WHEN all prompts are answered
-  // THEN a password is generated that matches the selected criteria
+  if (lowerCaseOpt === false && upperCaseOpt === false && numbersOpt === false && specCharsOpt === false) {
+     alert("Invalid. Please choose at least one character type.");
+     generatePassword();
+  };
   
-  return "test"
+  if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === true) {
+     var userPassword = "";
+       var i = 0;
+       for (i = 0; i < length;){
+          var randomIndex = Math.floor(Math.random() * lowerCaseIndex.length);
+          var indexChar = lowerCaseIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+          var randomIndex = Math.floor(Math.random() * upperCaseIndex.length);
+          var indexChar = upperCaseIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+          var randomIndex = Math.floor(Math.random() * numbersIndex.length);
+          var indexChar = numbersIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+          var randomIndex = Math.floor(Math.random() * specCharsIndex.length);
+          var indexChar = specCharsIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+     };
+     }
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     for (i = 0; i < length;){
+          lowerCaseOption();
+          upperCaseOption();
+          numbersOption();
+     }}
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === false && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     for (i = 0; i < length;){
+          lowerCaseOption();
+          upperCaseOption();
+     }}
+  else if (lowerCaseOpt === true && upperCaseOpt === false && numbersOpt === false && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     for (i = 0; i < length;){
+          lowerCaseOption();
+     }}
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     }
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     }
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     }
+  else if (lowerCaseOpt === true && upperCaseOpt === true && numbersOpt === true && specCharsOpt === false) {
+     var userPassword = "";
+     var i = 0;
+     }
+
+
+
+if (userPassword.length != length) {
+     userPassword = userPassword.slice((userPassword.length) - length);
+};
+
+  
+  return userPassword;
 }
 
 // Write password to the #password input
@@ -47,3 +116,43 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+// Function Declarations
+
+
+function lowerCaseOption() {
+     var userPassword = "";
+     var i = 0;
+     var randomIndex = Math.floor(Math.random() * lowerCaseIndex.length);
+          var indexChar = lowerCaseIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+}
+
+function upperCaseOption() {
+     var userPassword = "";
+     var i = 0;
+     var randomIndex = Math.floor(Math.random() * upperCaseIndex.length);
+          var indexChar = upperCaseIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+}
+
+function numbersOption() {
+     var userPassword = "";
+     var i = 0;
+     var randomIndex = Math.floor(Math.random() * numbersIndex.length);
+          var indexChar = numbersIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+}
+
+function specCharsOption() {
+     var userPassword = "";
+     var i = 0;
+     var randomIndex = Math.floor(Math.random() * specCharsIndex.length);
+          var indexChar = specCharsIndex[randomIndex];
+          var userPassword = userPassword.concat(indexChar);
+          i++;
+}
